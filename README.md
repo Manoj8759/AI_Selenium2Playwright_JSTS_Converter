@@ -37,6 +37,27 @@ A Tier-1 premium web application designed to migrate legacy automation scripts (
    - Open `index.html` in any modern browser.
    - Paste source code and click **Convert Now**.
 
-## Maintenance
-- Updates to conversion logic should be refined in the `system` prompt within `index.html`.
-- New versions of models can be swapped by changing the `model` property in the fetch request.
+## 🌐 Hosting & Deployment
+
+The application is structured for both local use and containerized hosting.
+
+### 1. Build the Production UI
+First, build the optimized frontend assets:
+```bash
+npm run build
+```
+
+### 2. Local Network Hosting
+Start the Express server:
+```bash
+npm start
+```
+Others on your network can access the tool via `http://YOUR_LOCAL_IP:3001`.
+
+### 3. Docker Deployment
+Use the included `Dockerfile` to containerize the app:
+```bash
+docker build -t playwright-converter .
+docker run -p 3001:3001 playwright-converter
+```
+*Note: The container uses `host.docker.internal` to communicate with Ollama on your host machine.*
